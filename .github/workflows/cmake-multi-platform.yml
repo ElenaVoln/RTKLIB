@@ -63,3 +63,33 @@ jobs:
       # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
       # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
       run: ctest --build-config ${{ matrix.build_type }}
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+          name: shared-artifact
+          path: bin/
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4\
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: bin/
+    - name: List downloaded artifacts
+      run: ls -l bin/*
+    - name: Run --help for all files in bin/
+      run: |
+          echo "Running --help for all files in bin/"
+          for file in bin/*; do
+            if [[ -x "$file" ]]; then
+              echo "----- $file --help -----"
+              "$file" --help || echo "$file failed"
+              echo
+            else
+              echo "Skipping non-executable $file"
+            fi
+          done
+        
