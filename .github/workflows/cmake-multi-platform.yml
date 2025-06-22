@@ -48,6 +48,8 @@ jobs:
       run: ls -l bin/*
     - name: Prepare environment
       run: sudo cp lib/librtklib.so /usr/local/lib/; sudo ldconfig
+    - name: Make bin files executable
+      run: chmod +x bin/*
     - name: Run --help for all files in bin/
       run: |
           echo "Running --help for all files in bin/"
