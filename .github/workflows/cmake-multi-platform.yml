@@ -41,7 +41,7 @@ jobs:
     - name: Download artifacts
       uses: actions/download-artifact@v4
       with:
-        name: bin/
+        name: shared-artifact
     - name: List downloaded artifacts
       run: ls -l bin/*
     - name: Run --help for all files in bin/
