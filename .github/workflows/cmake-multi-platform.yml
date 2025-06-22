@@ -32,7 +32,9 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           name: shared-artifact
-          path: bin/ lib/librtklib.so
+          path: |
+            bin/ 
+            lib/librtklib.so
   test:
     needs: build
     runs-on: ubuntu-latest
