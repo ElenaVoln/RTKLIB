@@ -14,7 +14,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Install Dependencies
-      run: apt update && apt install -y liblapack-dev libblas-dev
+      run: |
+          sudo apt update
+          sudo apt install -y cmake build-essential liblapack-dev libblas-dev
     - name: Build Linux
       run: >
         mkdir build;
