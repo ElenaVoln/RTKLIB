@@ -73,9 +73,9 @@ jobs:
 
     - name: Build Linux
       run: >
-        mkdir build
-        cd build
-        cmake .. -DCMAKE_BUILD_TYPE=Release
+        mkdir build ;
+        cd build ;
+        cmake .. -DCMAKE_BUILD_TYPE=Release ;
         make
 
     - name: Test
