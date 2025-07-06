@@ -76,9 +76,7 @@ jobs:
         mkdir build ;
         cd build ;
         cmake .. -DCMAKE_BUILD_TYPE=Release ;
-        ls ;
-        echo %cd% ;
-        make
+        cmake --build . --config Release
     - name: Test
       working-directory: build
       run: ctest -C Release
