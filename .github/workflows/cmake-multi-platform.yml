@@ -78,13 +78,13 @@ jobs:
           install: >-
             mingw-w64-x86_64-gcc
             mingw-w64-x86_64-cmake
-            mingw-w64-x86_64-openblas
             make
+            mingw-w64-x86_64-openblas
     - name: Build
       run: >
         mkdir build ;
         cd build ;
-        cmake .. -G "MinGW Makefiles";
+        cmake .. -G "MinGW Makefiles" ;
         make
     - name: Test
       working-directory: build
