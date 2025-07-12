@@ -84,7 +84,7 @@ jobs:
       run: >
         mkdir build ;
         cd build ;
-        cmake .. -G "MinGW Makefiles" -DBLAS_LIBRARIES=openblas -DLAPACK_LIBRARIES=openblas;
+        cmake .. -G "MinGW Makefiles" -DBLAS_LIBRARIES=/mingw64/lib/libopenblas.a -DLAPACK_LIBRARIES=/mingw64/lib/libopenblas.a;
         make
     - name: Test
       working-directory: build
