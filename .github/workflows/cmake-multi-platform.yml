@@ -17,7 +17,7 @@ jobs:
       run: |
           sudo apt update
           sudo apt install -y cmake build-essential liblapack-dev libblas-dev
-    - name: Build Linux
+    - name: Build
       run: >
         mkdir build;
         cd build;
@@ -71,7 +71,7 @@ jobs:
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v1
 
-    - name: Build Linux
+    - name: Build
       run: >
         mkdir build ;
         cd build ;
