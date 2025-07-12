@@ -78,7 +78,8 @@ jobs:
         mkdir build ;
         cd build ;
         cmake .. -DCMAKE_BUILD_TYPE=Release ;
-        make
+        ls * ;
+        cmake --build . --config Release
     - name: Test
       working-directory: build
       run: ctest -C Release
