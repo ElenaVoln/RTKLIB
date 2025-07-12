@@ -72,14 +72,20 @@ jobs:
 
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v1
-
+    - name: Install MSYS2 + MinGW
+      uses: msys2/setup-msys2@v2
+      with:
+          install: >-
+            mingw-w64-x86_64-gcc
+            make
     - name: Build
       run: >
         mkdir build ;
         cd build ;
         cmake .. -DCMAKE_BUILD_TYPE=Release ;
         ls * ;
-        cmake --build . --config Release
+        cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release .
+        mingw32-make
     - name: Test
       working-directory: build
       run: ctest -C Release
