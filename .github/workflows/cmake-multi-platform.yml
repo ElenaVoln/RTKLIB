@@ -81,6 +81,7 @@ jobs:
             make
             mingw-w64-x86_64-openblas
     - name: Build
+      shell: msys2 {0}
       run: |
         mkdir build
         cd build
