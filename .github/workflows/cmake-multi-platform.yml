@@ -4,9 +4,11 @@ name: CMake on multiple platforms
 
 on:
   push:
-    branches: [ "add_workflow-1" ]
+    branches:
+      - '**'  # Matches all branches
   pull_request:
-    branches: [ "add_workflow-1" ]
+    branches:
+      - '**'  # Matches all branches
 
 jobs:
   build_linux:
@@ -76,7 +78,7 @@ jobs:
         mkdir build ;
         cd build ;
         cmake .. -DCMAKE_BUILD_TYPE=Release ;
-        cmake --build . --config Release
+        make
     - name: Test
       working-directory: build
       run: ctest -C Release
