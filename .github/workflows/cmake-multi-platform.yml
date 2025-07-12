@@ -77,15 +77,14 @@ jobs:
       with:
           install: >-
             mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
             make
     - name: Build
       run: >
         mkdir build ;
         cd build ;
-        cmake .. -DCMAKE_BUILD_TYPE=Release ;
-        ls * ;
-        cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release .
-        mingw32-make
+        cmake .. -G "MinGW Makefiles";
+        make
     - name: Test
       working-directory: build
       run: ctest -C Release
