@@ -69,17 +69,27 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
-
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v1
+    - name: Install shell-like env
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          mingw-w64-x86_64-gcc
+          mingw-w64-x86_64-cmake
+          mingw-w64-x86_64-make
+
     - name: Build
+      shell: msys2 {0}
       run: |
-        mkdir build ;
-        cd build ;
-        cmake .. -DCMAKE_BUILD_TYPE=Release ;
-        make
-        ls * ;
-        cmake --build . --config Release
+        export PATH=/mingw64/bin:$PATH
+        mkdir build
+        cd build
+        cmake .. -G "MinGW Makefiles" \
+          -DCMAKE_C_COMPILER=gcc \
+          -DCMAKE_CXX_COMPILER=g++
+        mingw32-make
     - name: Test
       working-directory: build
       run: ctest -C Release
