@@ -67,3 +67,6 @@ set(CPACK_RPM_PACKAGE_VERSION ${VERSION}.${PATCH_LEVEL})
 set(CPACK_DEBIAN_PACKAGE_SECTION "Development")
 
 include(CPack)
+
+
+find_library(openblas)
