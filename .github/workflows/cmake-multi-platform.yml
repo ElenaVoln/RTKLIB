@@ -90,7 +90,8 @@ jobs:
         cmake .. -G "MinGW Makefiles" \
           -DCMAKE_C_COMPILER=gcc \
           -DCMAKE_CXX_COMPILER=g++ \
-          -DCMAKE_EXE_LINKER_FLAGS="-L/mingw64/lib -lopenblas" 
+          -DBLAS_LIBRARIES=/mingw64/lib/libopenblas.a \
+          -DLAPACK_LIBRARIES=/mingw64/lib/libopenblas.a
         mingw32-make
     - name: Test
       working-directory: build
