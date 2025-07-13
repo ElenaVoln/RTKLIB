@@ -72,26 +72,14 @@ jobs:
 
     - name: Install CMake
       uses: jwlawson/actions-setup-cmake@v1
-    - name: Install MSYS2 + MinGW
-      uses: msys2/setup-msys2@v2
-      with:
-          install: >-
-            mingw-w64-x86_64-gcc
-            mingw-w64-x86_64-cmake
-            make
-            mingw-w64-x86_64-openblas
     - name: Build
-      shell: msys2 {0}
       run: |
-        export PATH=/mingw64/bin:$PATH
-        mkdir build
-        cd build
-        cmake .. -G "MinGW Makefiles" \
-          -DBLAS_LIBRARIES=/mingw64/lib/libopenblas.a \
-          -DLAPACK_LIBRARIES=/mingw64/lib/libopenblas.a \
-          -DCMAKE_C_COMPILER=/mingw64/bin/gcc.exe \
-          -DCMAKE_CXX_COMPILER=/mingw64/bin/g++.exe
-        mingw32-make
+        mkdir build ;
+        cd build ;
+        cmake .. -DCMAKE_BUILD_TYPE=Release ;
+        make
+        ls * ;
+        cmake --build . --config Release
     - name: Test
       working-directory: build
       run: ctest -C Release
