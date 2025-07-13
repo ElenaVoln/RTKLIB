@@ -79,6 +79,7 @@ jobs:
           mingw-w64-x86_64-gcc
           mingw-w64-x86_64-cmake
           mingw-w64-x86_64-make
+          mingw-w64-x86_64-openblas
 
     - name: Build
       shell: msys2 {0}
@@ -88,7 +89,9 @@ jobs:
         cd build
         cmake .. -G "MinGW Makefiles" \
           -DCMAKE_C_COMPILER=gcc \
-          -DCMAKE_CXX_COMPILER=g++
+          -DCMAKE_CXX_COMPILER=g++ \
+          -DBLAS_LIBRARIES=/mingw64/lib/libopenblas.a \
+          -DLAPACK_LIBRARIES=/mingw64/lib/libopenblas.a
         mingw32-make
     - name: Test
       working-directory: build
