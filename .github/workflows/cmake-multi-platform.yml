@@ -84,7 +84,7 @@ jobs:
     - name: Build
       shell: msys2 {0}
       run: |
-        ls -l /usr/x86_64-w64-mingw32/lib/
+        ls /mingw64/lib/*
         export PATH=/mingw64/bin:$PATH
         mkdir build
         cd build
