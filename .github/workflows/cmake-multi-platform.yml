@@ -82,7 +82,7 @@ jobs:
           mingw-w64-x86_64-openblas
 
     - name: Build
-      shell: msys2 {0}
+      shell: cmd
       run: |
         where gcc
         ls D:\a\_temp\msys64\mingw64\lib
