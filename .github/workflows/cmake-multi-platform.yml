@@ -80,16 +80,21 @@ jobs:
           mingw-w64-x86_64-cmake
           mingw-w64-x86_64-make
           mingw-w64-x86_64-openblas
-
+    - name: Add ln
+      shell: msys2
+      run: |
+          cd /mingw64/lib
+          ln -s libopenblas.dll.a libblas.a
+          ln -s libopenblas.dll.a liblapack.a
     - name: Build
       shell: cmd
       run: |
         where gcc
-        ls D:\a\_temp\msys64\mingw64\lib
-        export PATH=D:\a\_temp\msys64\mingw64\bin:$PATH
         mkdir build
         cd build
+        pwd
         cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DBLAS_LIBRARIES=D:/a/_temp/msys64/mingw64/lib/libopenblas.a
+        cmake --build .
     - name: Test
       working-directory: build
       run: ctest -C Release
