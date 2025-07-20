@@ -86,6 +86,8 @@ jobs:
           cd /mingw64/lib
           ln -s libopenblas.dll.a libblas.a
           ln -s libopenblas.dll.a liblapack.a
+          ls -l /mingw64/lib/libblas.a
+          ls -l /mingw64/lib/liblapack.a
     - name: Build
       shell: cmd
       run: |
