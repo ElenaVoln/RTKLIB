@@ -84,14 +84,15 @@ jobs:
     - name: Build
       shell: msys2 {0}
       run: |
-        ls /mingw64/lib/*
-        export PATH=/mingw64/bin:$PATH
+        where gcc
+        ls C:\msys64\mingw64\lib
+        export PATH=C:\msys64\mingw64\bin:$PATH
         mkdir build
         cd build
         cmake .. -G "MinGW Makefiles"  \
           -DCMAKE_C_COMPILER=gcc \
           -DCMAKE_CXX_COMPILER=g++ 
-          -DBLAS_LIBRARIES=/mingw64/lib/libopenblas.a
+          -DBLAS_LIBRARIES= C:\msys64\mingw64\lib\libopenblas.a
         mingw32-make
     - name: Test
       working-directory: build
