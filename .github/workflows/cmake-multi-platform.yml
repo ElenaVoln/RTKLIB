@@ -89,11 +89,7 @@ jobs:
         export PATH=D:\a\_temp\msys64\mingw64\bin:$PATH
         mkdir build
         cd build
-        cmake .. -G "MinGW Makefiles"  \
-          -DCMAKE_C_COMPILER=gcc \
-          -DCMAKE_CXX_COMPILER=g++ 
-          -DBLAS_LIBRARIES=D:\a\_temp\msys64\mingw64\lib\libopenblas.a
-        mingw32-make
+        cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DBLAS_LIBRARIES=D:/a/_temp/msys64/mingw64/lib/libopenblas.a
     - name: Test
       working-directory: build
       run: ctest -C Release
