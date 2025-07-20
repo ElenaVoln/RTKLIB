@@ -91,6 +91,7 @@ jobs:
         cmake .. -G "MinGW Makefiles"  \
           -DCMAKE_C_COMPILER=gcc \
           -DCMAKE_CXX_COMPILER=g++ 
+          -DBLAS_LIBRARIES=/mingw64/lib/libopenblas.a
         mingw32-make
     - name: Test
       working-directory: build
