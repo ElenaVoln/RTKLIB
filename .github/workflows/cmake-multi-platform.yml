@@ -100,8 +100,10 @@ jobs:
         cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ cmake .. -G"MinGW Makefiles" -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
         cmake --build .
     - name: Test
-      working-directory: build
-      run: ctest -C Release
+      shell: msys2 {0}
+      run: |
+        cd build
+        ctest
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4
