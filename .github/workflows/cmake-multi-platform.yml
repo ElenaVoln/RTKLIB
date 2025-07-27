@@ -86,6 +86,10 @@ jobs:
           cd /mingw64/lib
           cp /mingw64/lib/libopenblas.dll.a /mingw64/lib/libblas.a
           cp /mingw64/lib/libopenblas.dll.a /mingw64/lib/liblapack.a
+    - name: CHecks libs
+      shell: msys2 {0}
+      run: |
+          ls /mingw64/lib/
     - name: Build
       shell: cmd
       run: |
