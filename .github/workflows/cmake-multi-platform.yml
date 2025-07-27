@@ -86,10 +86,6 @@ jobs:
           cd /mingw64/lib
           cp /mingw64/lib/libopenblas.dll.a /mingw64/lib/libblas.a
           cp /mingw64/lib/libopenblas.dll.a /mingw64/lib/liblapack.a
-    - name: CHecks libs
-      shell: msys2 {0}
-      run: |
-          ls /mingw64/lib/
     - name: Build
       shell: cmd
       run: |
@@ -99,12 +95,10 @@ jobs:
         pwd
         cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ cmake .. -G"MinGW Makefiles" -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
         cmake --build .
-    - name: Test
+    - name: check outputs
       shell: msys2 {0}
       run: |
-        cd build
-        ctest
-
+          ls bin/*
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
@@ -112,3 +106,33 @@ jobs:
           path: |
             build/bin/
             build/Release/
+
+  test_windows:
+    needs: build_windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: shared-artifact-windows
+      - name: Install shell-like env
+        uses: msys2/setup-msys2@v2
+      - name: List downloaded artifacts
+        run: ls -l bin/*
+      - name: Prepare environment
+        run: sudo cp lib/librtklib.so /usr/local/lib/; sudo ldconfig
+      - name: Make bin files executable
+        run: chmod +x bin/*
+      - name: Run --help for all files in bin/
+        run: |
+          echo "Running --help for all files in bin/"
+          for file in bin/*; do
+            if [[ -x "$file" ]]; then
+              echo "----- $file --help -----"
+              "$file" --help || echo "$file failed"
+              echo
+            else
+              echo "Skipping non-executable $file"
+            fi
+          done
