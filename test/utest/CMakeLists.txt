@@ -1,6 +1,12 @@
 
 set(RTKLBI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src)
 
+target_link_libraries(t_matrix m lapack blas winmm)
+target_link_libraries(t_geoid m lapack blas winmm)
+target_link_libraries(t_ppp m lapack blas winmm)
+target_link_libraries(t_ionex m lapack blas winmm)
+target_link_libraries(t_tle m lapack blas winmm)
+
 add_executable(t_matrix t_matrix.c ${RTKLBI_DIR}/rtkcmn.c ${RTKLBI_DIR}/trace.c ${RTKLBI_DIR}/preceph.c)
 target_link_libraries(t_matrix m lapack blas)
 
