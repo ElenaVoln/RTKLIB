@@ -23,7 +23,7 @@ jobs:
       run: |
         pip install -U pip
         pip install aqtinstall
-        python3 -m aqt install-qt linux desktop 5.15.2 gcc_64 --outputdir ${{ github.workspace }}/Qt --modules qtserialport
+        python3 -m aqt install-qt linux desktop 5.15.2 gcc_64 --outputdir ${{ github.workspace }}/Qt 
     - name: Build
       run: >
         mkdir build;
@@ -97,7 +97,7 @@ jobs:
       run: |
         pip install -U pip
         pip install aqtinstall
-        python -m aqt install-qt windows desktop 5.15.2 win64_mingw --outputdir Qt --modules qtserialport
+        python -m aqt install-qt windows desktop 5.15.2 win64_mingw --outputdir Qt
     - name: Build
       shell: cmd
       run: |
