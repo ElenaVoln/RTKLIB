@@ -93,13 +93,9 @@ jobs:
           cp /mingw64/lib/libopenblas.dll.a /mingw64/lib/libblas.a
           cp /mingw64/lib/libopenblas.dll.a /mingw64/lib/liblapack.a
     - name: Install Qt
-      uses: jurplel/install-qt-action@v4
-      with:
-          version: '6.6.2'
-          host: windows
-          modules: 'qtserialport'
-          arch: win64_mingw
-          tools: 'tools_mingw,qt.tools.win64_mingw1130'
+      run: |
+        pip install -U pip
+        pip install aqtinstall
     - name: Build
       shell: cmd
       run: |
