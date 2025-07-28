@@ -22,7 +22,7 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v3
       with:
-          version: '5.15.2'
+          version: '6.6.2'
           modules: 'qtserialport'
     - name: Build
       run: >
@@ -100,7 +100,7 @@ jobs:
           host: windows
           modules: 'qtserialport'
           arch: win64_mingw
-          tools: 'tools_mingw,qt.tools.win64_mingw1120'
+          tools: 'tools_mingw,qt.tools.win64_mingw1130'
     - name: Build
       shell: cmd
       run: |
