@@ -91,11 +91,9 @@ jobs:
     - name: Build
       shell: cmd
       run: |
-        where gcc
         mkdir build
         cd build
-        pwd
-        cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ cmake .. -G"MinGW Makefiles" -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
+        cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
         cmake --build .
     - name: list builds
       shell: msys2 {0}
