@@ -130,7 +130,7 @@ jobs:
         shell: msys2 {0}
         run: |
           echo "Running --help for all files in bin/"
-          for file in bin/*; do
+          for file in *; do
             if [[ -x "$file" ]]; then
               echo "----- $file --help -----"
               "$file" --help || echo "$file failed"
