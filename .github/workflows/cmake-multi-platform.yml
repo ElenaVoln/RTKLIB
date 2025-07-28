@@ -18,12 +18,11 @@ jobs:
     - name: Install Dependencies
       run: |
           sudo apt update
-          sudo apt install -y cmake build-essential liblapack-dev libblas-dev
-    - name: Install Qt
-      run: |
-        pip install -U pip
-        pip install aqtinstall
-        python3 -m aqt install-qt linux desktop 5.15.2 gcc_64 --outputdir ${{ github.workspace }}/Qt 
+          sudo apt install -y cmake build-essential liblapack-dev libblas-dev  libgl1-mesa-dev libglib2.0-0 libglib2.0-dev libgl1-mesa-dev libx11-dev libxext-dev libxfixes-dev libxi-dev libxrender-dev libxcb1-dev libxcb-glx0-dev libxcb-keysyms1-dev libxkbcommon-dev
+
+          pip install -U pip
+          pip install aqtinstall
+          python3 -m aqt install-qt linux desktop 5.15.2 gcc_64 --outputdir ${{ github.workspace }}/Qt
     - name: Build
       run: >
         mkdir build;
