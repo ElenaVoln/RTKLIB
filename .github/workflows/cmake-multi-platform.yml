@@ -98,7 +98,7 @@ jobs:
     - name: list builds
       shell: msys2 {0}
       run: |
-          ls bin/*
+          ls *
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
