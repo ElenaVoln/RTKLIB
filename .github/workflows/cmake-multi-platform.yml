@@ -104,7 +104,7 @@ jobs:
         set QT_DIR=${{ github.workspace }}\Qt\5.15.2\mingw81_32
         mkdir build
         cd build
-        cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR% -G "MinGW Makefiles" ^
+        cmake .. -G "MinGW Makefiles" ^
           -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ ^
           -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" ^
           -DCMAKE_BUILD_TYPE=Release
