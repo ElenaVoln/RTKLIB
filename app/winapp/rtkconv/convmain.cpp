@@ -87,7 +87,7 @@ void __fastcall TMainWindow::FormCreate(TObject *Sender)
 {
 	AnsiString s;
 	
-	Caption=s.sprintf("%s ver:%s %s",PRGNAME,VER_RTKLIB,PATCH_LEVEL);
+	Caption=s.sprintf("%s-%s %s",PRGNAME,VER_RTKLIB,PATCH_LEVEL);
 	
 	::DragAcceptFiles(Handle,true);
 }
@@ -590,11 +590,33 @@ void __fastcall TMainWindow::BtnAboutClick(TObject *Sender)
 // callback on button-time-start --------------------------------------------
 void __fastcall TMainWindow::TimeStartFClick(TObject *Sender)
 {
+	if (TimeStartF->Checked && TimeEndF->Checked) {
+          // Initialize the start time to the end time if the start
+          // time has just been enabled and is out of order.
+          gtime_t ts={0},te={0};
+          double tint=0.0,tunit=0.0;
+          GetTime(&ts,&te,&tint,&tunit);
+          if (timediff(te, ts) < 0.0) {
+            TimeY1->Text = TimeY2->Text;
+            TimeH1->Text = TimeH2->Text;
+          }
+        }
 	UpdateEnable();
 }
 // callback on button-time-end ----------------------------------------------
 void __fastcall TMainWindow::TimeEndFClick(TObject *Sender)
 {
+	if (TimeStartF->Checked && TimeEndF->Checked) {
+          // Initialize the end time to the start time if the end time
+          // has just been enabled and is out of order.
+          gtime_t ts={0},te={0};
+          double tint=0.0,tunit=0.0;
+          GetTime(&ts,&te,&tint,&tunit);
+          if (timediff(te, ts) < 0.0) {
+            TimeY2->Text = TimeY1->Text;
+            TimeH2->Text = TimeH1->Text;
+          }
+        }
 	UpdateEnable();
 }
 // callback on button-time-interval -----------------------------------------
@@ -937,7 +959,7 @@ void __fastcall TMainWindow::ConvertFile(void)
 	}
 	GetTime(&rnxopt.ts,&rnxopt.te,&rnxopt.tint,&rnxopt.tunit);
 	strncpy(rnxopt.staid,RnxCode.c_str(),31);
-	sprintf(rnxopt.prog,"%s %s %s",PRGNAME,VER_RTKLIB,PATCH_LEVEL);
+	sprintf(rnxopt.prog,"%s-%s %s",PRGNAME,VER_RTKLIB,PATCH_LEVEL);
 	strncpy(rnxopt.runby,RunBy.c_str(),31);
 	strncpy(rnxopt.marker,Marker.c_str(),63);
 	strncpy(rnxopt.markerno,MarkerNo.c_str(),31);
