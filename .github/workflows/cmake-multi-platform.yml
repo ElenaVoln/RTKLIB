@@ -123,19 +123,10 @@ jobs:
         shell: msys2 {0}
         run: |
               ls *
-              ls -l bin/*
-            
-
-      - name: Run --help for all files in bin/
-        shell: msys2 {0}
+      - name: Run --help for all exe files
+        shell: shell
         run: |
-          echo "Running --help for all files in bin/"
-          for file in *; do
-            if [[ -x "$file" ]]; then
-              echo "----- $file --help -----"
-              "$file" --help || echo "$file failed"
-              echo
-            else
-              echo "Skipping non-executable $file"
-            fi
-          done
+            .\crx2rnx.exe --help
+            .\pos2kml.exe --help
+            .\rnx2rtkp.exe--help
+          
