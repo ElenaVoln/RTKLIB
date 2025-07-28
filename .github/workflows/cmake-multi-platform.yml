@@ -13,6 +13,7 @@ on:
 jobs:
   build_linux:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - name: Install Dependencies
@@ -100,10 +101,10 @@ jobs:
     - name: Build
       shell: cmd
       run: |
-        set QT_DIR=${{ github.workspace }}\Qt\5.15.2\mingw_32
+        set QT_DIR=${{ github.workspace }}\Qt\5.15.2\mingw81_32\lib\cmake\Qt5
         mkdir build
         cd build
-        cmake .. -DCMAKE_PREFIX_PATH=${{ github.workspace }}\Qt\5.15.2\mingw_32 -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
+        cmake .. -DCMAKE_PREFIX_PATH=${{ github.workspace }}\Qt\5.15.2\mingw81_32 -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
         cmake --build .
     - name: list builds
       shell: msys2 {0}
