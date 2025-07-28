@@ -124,7 +124,7 @@ jobs:
         run: |
               ls *
       - name: Run --help for all exe files
-        shell: shell
+        shell: cmd
         run: |
             .\crx2rnx.exe --help
             .\pos2kml.exe --help
