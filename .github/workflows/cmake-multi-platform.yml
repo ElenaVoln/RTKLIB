@@ -97,7 +97,7 @@ jobs:
       run: |
         pip install -U pip
         pip install aqtinstall
-        python -m aqt install-qt windows desktop 5.15.2 win64_mingw --outputdir Qt
+        python -m aqt install-qt  win32_mingw81 desktop 5.15.2 win64_mingw --outputdir Qt
     - name: Build
       shell: cmd
       run: |
