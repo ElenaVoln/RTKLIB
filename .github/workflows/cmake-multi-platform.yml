@@ -28,7 +28,7 @@ jobs:
         export QT_DIR=${{ github.workspace }}/Qt/5.15.2/gcc_64/lib/cmake/Qt5 ;
         mkdir build;
         cd build;
-        cmake -DCMAKE_PREFIX_PATH="${{ github.workspace }}/Qt/5.15.2/gcc_64"
+        cmake -DCMAKE_PREFIX_PATH="${{ github.workspace }}/Qt/5.15.2/gcc_64";
         make
 
     - name: Test
@@ -97,7 +97,7 @@ jobs:
       run: |
         pip install -U pip
         pip install aqtinstall
-        python -m aqt install-qt  win32_mingw81 desktop 5.15.2 win64_mingw --outputdir Qt
+        python -m aqt install-qt windows win32_mingw81  5.15.2 win64_mingw --outputdir Qt
     - name: Build
       shell: cmd
       run: |
