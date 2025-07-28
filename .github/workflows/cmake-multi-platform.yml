@@ -96,13 +96,13 @@ jobs:
       run: |
         pip install -U pip
         pip install aqtinstall
-        python -m aqt install-qt windows desktop  5.15.2 win32_mingw81 --outputdir Qt
+        python -m aqt install-qt windows desktop  5.15.2 win32_mingw81 --outputdir --outputdir ${{ github.workspace }}/Qt
     - name: Build
       shell: cmd
       run: |
         mkdir build
         cd build
-        cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
+        cmake .. -DCMAKE_PREFIX_PATH="${{ github.workspace }}/Qt/5.15.2/gcc_64"; -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++  -DCMAKE_EXE_LINKER_FLAGS="-LD:/a/_temp/msys64/mingw64/lib -lwinmm" 
         cmake --build .
     - name: list builds
       shell: msys2 {0}
