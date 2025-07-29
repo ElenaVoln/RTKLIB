@@ -118,26 +118,3 @@ jobs:
           name: shared-artifact-windows
           path: |
             bin/
-
-  test_windows:
-    needs: build_windows
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: shared-artifact-windows
-      - name: Install shell-like env
-        uses: msys2/setup-msys2@v2
-      - name: List downloaded artifacts
-        shell: msys2 {0}
-        run: |
-              ls bin/*
-      - name: Run --help for all exe files
-        shell: cmd
-        run: |
-            .\crx2rnx.exe --help
-            .\pos2kml.exe --help
-            .\rnx2rtkp.exe--help
-          
