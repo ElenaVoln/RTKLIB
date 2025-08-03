@@ -75,8 +75,37 @@ jobs:
               echo "Skipping non-executable $file"
             fi
           done
-        
+  windows_alternative:
+    runs-on: windows-latest
+    steps:
+      -
+      - uses: actions/checkout@v4
+
+      - name: Install CMake
+        uses: jwlawson/actions-setup-cmake@v1
+
+      - name: Install MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: "5.15.2"
+          host: windows
+          target: desktop
+          arch: win64_msvc2019_64
+      - name: Configure with CMake (MSVC)
+        run: |
+          mkdir build
+          cd build
+          cmake .. ^
+            -G "Visual Studio 17 2022" ^
+            -DCMAKE_BUILD_TYPE="Release" ^
+            -DCMAKE_PREFIX_PATH="5.15.2"
+          cmake --build .
+
   build_windows:
+    if: false
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
