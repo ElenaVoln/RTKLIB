@@ -55,3 +55,11 @@ else()
   add_definitions(-DDLL)
 endif()
 install(TARGETS rtklib RUNTIME DESTINATION lib)
+
+
+# Set proper export symbols for Windows DLL
+if(WIN32 AND DLL)
+    set_target_properties(rtklib PROPERTIES
+        WINDOWS_EXPORT_ALL_SYMBOLS TRUE
+    )
+endif()
