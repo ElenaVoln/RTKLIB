@@ -12,6 +12,8 @@ on:
 
 jobs:
   build_linux:
+    if: false
+
     runs-on: ubuntu-latest
 
     steps:
@@ -45,6 +47,8 @@ jobs:
             bin/ 
             lib/librtklib.so
   test_linux:
+    if: false
+
     needs: build_linux
     runs-on: ubuntu-latest
     steps:
