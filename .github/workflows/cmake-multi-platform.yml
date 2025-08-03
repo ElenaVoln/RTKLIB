@@ -97,10 +97,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake .. ^
-            -G "Visual Studio 17 2022" ^
-            -DCMAKE_BUILD_TYPE="Release" ^
-            -DCMAKE_PREFIX_PATH="5.15.2"
+          cmake .. -DCMAKE_BUILD_TYPE="Release" -DCMAKE_PREFIX_PATH="5.15.2"
           cmake --build .
 
   build_windows:
