@@ -1,6 +1,11 @@
 
 if(WIN32)
     set(EXTRA_LIBS winmm)
+       # On Windows with MSVC, math functions are built into the C runtime
+    set(MATH_LIBS)
+    # Try to find BLAS and LAPACK for Windows
+    find_package(BLAS QUIET)
+    find_package(LAPACK QUIET)
 endif()
 
 set(RTKLBI_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../src)
